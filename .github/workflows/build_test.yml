@@ -26,6 +26,7 @@ jobs:
 
     - name: Start backend
       run: npm run server &
+           sleep 7
 
     - name: Execute static security tests
       run: npm audit
