@@ -24,13 +24,11 @@ jobs:
     - name: Install Playwright browsers
       run: npx playwright install
 
-    - name: Start backend
-      run: npm run server &
-           sleep 7
-
-    - name: Execute static security tests
-      run: npm audit
-      continue-on-error: true
+    - name: Start backend and frontend
+      run: |
+        npm run server &
+        npm start &
+        npx wait-on http://localhost:3000
     
-    - name: Execute integration tests
+    - name: Run Playwright tests
       run: npm test
